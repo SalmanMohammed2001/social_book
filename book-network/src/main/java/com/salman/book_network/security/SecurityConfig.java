@@ -1,5 +1,6 @@
 package com.salman.book_network.security;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -17,11 +18,12 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 @EnableMethodSecurity(securedEnabled = true)
 public class SecurityConfig {
 
-//    private JwtFilter jwtauthfilter;
-//    private final AuthenticationProvider authenticationProvider;
+    private  JwtFilter jwtauthfilter;
+    private final AuthenticationProvider authenticationProvider;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -42,7 +44,7 @@ public class SecurityConfig {
                         "/swagger-ui.html"
                 ).permitAll().anyRequest().authenticated())
                 .sessionManagement(session->session.sessionCreationPolicy(STATELESS))
-                .authenticationProvider(authenticationProvide)
+                .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtauthfilter, UsernamePasswordAuthenticationFilter.class);
 
     }
