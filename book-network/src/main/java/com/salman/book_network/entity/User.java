@@ -86,10 +86,10 @@ public class User implements UserDetails, Principal {
 
     @Override
     public boolean isEnabled() {
-        return !enable;
+        return enable;
     }
 
-    private String fullName(){
+    public String fullName(){
         return  firstName + " " + lastName;
     }
 }

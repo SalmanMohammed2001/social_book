@@ -21,8 +21,8 @@ spring:
   mail:
     host: localhost
     port: 1025
-    username: salman
-    password: salman
+    username: ali
+    password: ali
     properties:
       mail:
         smtp:
@@ -33,7 +33,6 @@ spring:
         connectiontimeout: 5000
         timeout: 3000
         writetimeout: 5000
-
 
 springdoc:
   default-produces-media-type: application/json
@@ -50,3 +49,6 @@ application:
       expiration: 86400000 # a day
       refresh-token:
         expiration: 604800000 # 7 days
+  mailing:
+    mailing:
+      activation-url: http://localhost:4200/activation-account
