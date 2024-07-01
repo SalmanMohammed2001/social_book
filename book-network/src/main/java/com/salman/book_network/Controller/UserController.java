@@ -1,11 +1,15 @@
 package com.salman.book_network.Controller;
 
 
+import com.salman.book_network.dto.RegistrationRequest;
 import com.salman.book_network.service.AuthenticationService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("auth")
@@ -13,7 +17,17 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "Authentication")
 public class UserController {
 
-    private final AuthenticationService authenticationService;
+    private final AuthenticationService service;
+
+    @PostMapping("/register")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public ResponseEntity<?> register(@RequestBody @Valid RegistrationRequest request){
+
+        service.register(request);
+
+        return ResponseEntity.accepted().build();
+    }
+
 
 
 
