@@ -1,7 +1,9 @@
 package com.salman.book_network.mapper;
 
 import com.salman.book_network.dto.response.BookResponse;
+import com.salman.book_network.dto.response.BorrowedBookResponse;
 import com.salman.book_network.entity.Book;
+import com.salman.book_network.entity.BookTransactionHistory;
 import com.salman.book_network.record.BookRequest;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +32,18 @@ public class BookMapper {
                 .archived(book.isArchived())
                 .shareable(book.isShareable())
                 .owner(book.getOwner().fullName())
+                .build();
+    }
+
+    public BorrowedBookResponse toBorrowedBookResponse(BookTransactionHistory history) {
+        return BorrowedBookResponse.builder()
+                .id(history.getBook().getId())
+                .title(history.getBook().getTitle())
+                .authorName(history.getBook().getAuthorName())
+                .isbn(history.getBook().getIsbn())
+                .rate(history.getBook().getRate())
+                .returned(history.isReturned())
+                .returnApproved(history.isReturnApproved())
                 .build();
     }
 }
