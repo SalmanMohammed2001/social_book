@@ -1,4 +1,4 @@
-package com.salman.book_network.dto;
+package com.salman.book_network.dto.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

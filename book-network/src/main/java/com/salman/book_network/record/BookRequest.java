@@ -6,7 +6,6 @@ import lombok.NonNull;
 
 public record BookRequest(
         Integer id,
-
         @NotNull(message = "100")
         @NotEmpty(message = "100")
         String title,

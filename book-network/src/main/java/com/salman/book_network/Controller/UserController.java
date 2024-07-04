@@ -1,9 +1,9 @@
 package com.salman.book_network.Controller;
 
 
-import com.salman.book_network.dto.AuthenticateRequest;
-import com.salman.book_network.dto.AuthenticateResponse;
-import com.salman.book_network.dto.RegistrationRequest;
+import com.salman.book_network.dto.request.AuthenticateRequest;
+import com.salman.book_network.dto.response.AuthenticateResponse;
+import com.salman.book_network.dto.request.RegistrationRequest;
 import com.salman.book_network.service.AuthenticationService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.mail.MessagingException;

@@ -1,13 +1,10 @@
-package com.salman.book_network.dto;
+package com.salman.book_network.dto.request;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.*;
-
-import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor

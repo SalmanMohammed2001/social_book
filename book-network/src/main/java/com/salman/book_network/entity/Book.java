@@ -9,6 +9,7 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
@@ -41,6 +42,18 @@ public class Book extends BaseEntity {
 
     @OneToMany(mappedBy = "book")
     private List<BookTransactionHistory> bookTransactionHistories;
+
+
+    @Transient
+    public double getRate(){
+        if (feedbacks ==null || feedbacks.isEmpty()){
+            return 0.0;
+        }
+        var rate=feedbacks.stream().mapToDouble(Feedback::getNote).average().orElse(0.0);
+
+        double roundedRate=Math.round(rate *10.0) / 10.0;
+        return roundedRate;
+    }
 
 
 

@@ -1,6 +1,7 @@
 package com.salman.book_network.Controller;
 
 
+import com.salman.book_network.dto.response.BookResponse;
 import com.salman.book_network.entity.Book;
 import com.salman.book_network.entity.User;
 import com.salman.book_network.record.BookRequest;
@@ -31,5 +32,10 @@ public class BookController {
         return ResponseEntity.ok(service.save(request,connectedUser));
     }
 
+    @GetMapping("{book-id}")
+    public ResponseEntity<BookResponse>findById(@PathVariable("book-id") Integer bookId){
 
+        return  ResponseEntity.ok(service.findById(bookId));
+
+    }
 }

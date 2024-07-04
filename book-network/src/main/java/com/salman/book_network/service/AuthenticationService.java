@@ -1,8 +1,8 @@
 package com.salman.book_network.service;
 
-import com.salman.book_network.dto.AuthenticateRequest;
-import com.salman.book_network.dto.AuthenticateResponse;
-import com.salman.book_network.dto.RegistrationRequest;
+import com.salman.book_network.dto.request.AuthenticateRequest;
+import com.salman.book_network.dto.response.AuthenticateResponse;
+import com.salman.book_network.dto.request.RegistrationRequest;
 import com.salman.book_network.entity.Token;
 import com.salman.book_network.entity.User;
 import com.salman.book_network.repo.RoleRepository;
