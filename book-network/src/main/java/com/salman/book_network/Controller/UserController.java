@@ -29,9 +29,7 @@ public class UserController {
     }
 
     @PostMapping("/authenticate")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<AuthenticateResponse> authenticate(@RequestBody @Valid AuthenticateRequest request) throws MessagingException {
-
+    public ResponseEntity<AuthenticateResponse> authenticate(@RequestBody @Valid AuthenticateRequest request)  {
         return ResponseEntity.ok(service.authenticate(request));
     }
 
