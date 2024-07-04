@@ -1,16 +1,16 @@
 services:
   mysql:
     container_name: mysql-db-bsn
-    image: mysql:latest
+    image: mysql  # Use the MySQL 5.7 image, or another version you prefer
     environment:
-      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: 1234  # Change as needed
       MYSQL_DATABASE: book_social_network
-      MYSQL_USER: root
+    #  MYSQL_USER: root
       MYSQL_PASSWORD: 1234
     volumes:
-      - mysql:/var/lib/mysql
+      - mysql:/var/lib/mysql  # MySQL data directory
     ports:
-      - 3307:3306
+      - "3307:3306"  # MySQL default port
     networks:
       - spring-demo
     restart: unless-stopped
@@ -19,8 +19,8 @@ services:
     container_name: mail-dev-bsn
     image: maildev/maildev
     ports:
-      - 1080:1080
-      - 1025:1025
+      - "1080:1080"  # MailDev Web interface
+      - "1025:1025"  # MailDev SMTP server
     networks:
       - spring-demo
 
