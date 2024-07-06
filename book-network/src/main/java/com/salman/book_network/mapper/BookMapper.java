@@ -5,6 +5,7 @@ import com.salman.book_network.dto.response.BorrowedBookResponse;
 import com.salman.book_network.entity.Book;
 import com.salman.book_network.entity.BookTransactionHistory;
 import com.salman.book_network.record.BookRequest;
+import com.salman.book_network.util.file.FileUtils;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -32,6 +33,7 @@ public class BookMapper {
                 .archived(book.isArchived())
                 .shareable(book.isShareable())
                 .owner(book.getOwner().fullName())
+                .cover(FileUtils.readFileFromLocation(book.getBookCover()))
                 .build();
     }
 

@@ -1,5 +1,6 @@
-package handler;
+package com.salman.book_network.handler;
 
+import com.salman.book_network.exception.OperationNotPermittedException;
 import jakarta.mail.MessagingException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -13,7 +14,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-import static handler.BusinessErrorCodes.*;
 import static org.springframework.http.HttpStatus.*;
 
 
@@ -25,8 +25,8 @@ public class GlobalExceptionHandler {
                 .status(UNAUTHORIZED)
                 .body(
                         ExceptionResponse.builder()
-                                .businessErrorCode(ACCOUNT_LOCKED.getCode())
-                                .businessErrorDescription(ACCOUNT_LOCKED.getDescription())
+                                .businessErrorCode(BusinessErrorCodes.ACCOUNT_LOCKED.getCode())
+                                .businessErrorDescription(BusinessErrorCodes.ACCOUNT_LOCKED.getDescription())
                                 .error(exp.getMessage())
                                 .build()
                 );
@@ -38,8 +38,8 @@ public class GlobalExceptionHandler {
                 .status(UNAUTHORIZED)
                 .body(
                         ExceptionResponse.builder()
-                                .businessErrorCode(ACCOUNT_DISABLED.getCode())
-                                .businessErrorDescription(ACCOUNT_DISABLED.getDescription())
+                                .businessErrorCode(BusinessErrorCodes.ACCOUNT_DISABLED.getCode())
+                                .businessErrorDescription(BusinessErrorCodes.ACCOUNT_DISABLED.getDescription())
                                 .error(exp.getMessage())
                                 .build()
                 );
@@ -52,8 +52,8 @@ public class GlobalExceptionHandler {
                 .status(UNAUTHORIZED)
                 .body(
                         ExceptionResponse.builder()
-                                .businessErrorCode(BAD_CREDENTIALS.getCode())
-                                .businessErrorDescription(BAD_CREDENTIALS.getDescription())
+                                .businessErrorCode(BusinessErrorCodes.BAD_CREDENTIALS.getCode())
+                                .businessErrorDescription(BusinessErrorCodes.BAD_CREDENTIALS.getDescription())
                                 .error("Login and / or Password is incorrect")
                                 .build()
                 );
@@ -81,16 +81,16 @@ public class GlobalExceptionHandler {
 //                );
 //    }
 //
-//    @ExceptionHandler(OperationNotPermittedException.class)
-//    public ResponseEntity<ExceptionResponse> handleException(OperationNotPermittedException exp) {
-//        return ResponseEntity
-//                .status(BAD_REQUEST)
-//                .body(
-//                        ExceptionResponse.builder()
-//                                .error(exp.getMessage())
-//                                .build()
-//                );
-//    }
+    @ExceptionHandler(OperationNotPermittedException.class)
+    public ResponseEntity<ExceptionResponse> handleException(OperationNotPermittedException exp) {
+        return ResponseEntity
+                .status(BAD_REQUEST)
+                .body(
+                        ExceptionResponse.builder()
+                                .error(exp.getMessage())
+                                .build()
+                );
+    }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ExceptionResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException exp) {
